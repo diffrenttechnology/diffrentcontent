@@ -1,4 +1,4 @@
-import { Avatar } from '@/components/avatar'
+import { Avatar } from '../components/avatar'
 import {
   Dropdown,
   DropdownButton,
@@ -6,8 +6,8 @@ import {
   DropdownItem,
   DropdownLabel,
   DropdownMenu,
-} from '@/components/dropdown'
-import { Navbar, NavbarItem, NavbarSection, NavbarSpacer } from '@/components/navbar'
+} from '../components/dropdown'
+import { Navbar, NavbarItem, NavbarSection, NavbarSpacer } from '../components/navbar'
 import {
   Sidebar,
   SidebarBody,
@@ -18,8 +18,8 @@ import {
   SidebarLabel,
   SidebarSection,
   SidebarSpacer,
-} from '@/components/sidebar'
-import { SidebarLayout as CatalystSidebarLayout } from '@/components/sidebar-layout'
+} from '../components/sidebar'
+import { SidebarLayout as CatalystSidebarLayout } from '../components/sidebar-layout'
 import {
   ArrowRightStartOnRectangleIcon,
   ChevronDownIcon,

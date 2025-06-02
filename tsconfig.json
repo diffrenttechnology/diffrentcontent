@@ -5,9 +5,10 @@
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {
-      "@/*": ["./src/*"]
+      "@/*": ["src/*"]
     },
-    "jsx": "react-jsx",
-    "jsxImportSource": "react"
+    "module": "ESNext",
+    "moduleResolution": "bundler",
+    "types": ["node"]
   }
 }
