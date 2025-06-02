@@ -1,8 +1,8 @@
 ---
 import '../styles/global.css'
-import { Button } from '@/components/ui/button';
-import { Header } from '@/components/Header';
-import ApiTokenMissingCard from '@/components/admin/api-token-missing-card';
+import { Button } from '../components/ui/button';
+import ApiTokenMissingCard from '../components/admin/api-token-missing-card';
+import { Navbar } from '../components/catalyst-ui-kit/navbar';
 
 const currentPath = Astro.url.pathname;
 const title = Astro.props.title || 'SaaS Admin Template';
@@ -40,7 +40,7 @@ const apiTokenSet = API_TOKEN && API_TOKEN !== '';
     <title>{title ? `${title} - SaaS Admin Template` : 'SaaS Admin Template'}</title>
   </head>
   <body class="font-sans">
-    <Header currentPath={currentPath} />
+    <Navbar />
     <div class="flex-1 space-y-4 p-8 pt-6">
       <div class="mb-4">
         {!apiTokenSet && <ApiTokenMissingCard />}
