@@ -1,6 +1,5 @@
 import fs from 'fs';
 import path from 'path';
-import { glob } from 'glob';
 
 const polyfill = `// MessageChannel Polyfill for Cloudflare Workers
 if (typeof globalThis.MessageChannel === 'undefined') {
@@ -29,26 +28,39 @@ if (typeof globalThis.MessageChannel === 'undefined') {
 
 `;
 
-async function injectPolyfill() {
+function findWorkerFiles(dir: string): string[] {
+  const files: string[] = [];
+  const entries = fs.readdirSync(dir, { withFileTypes: true });
+
+  for (const entry of entries) {
+    const fullPath = path.join(dir, entry.name);
+    if (entry.isDirectory()) {
+      files.push(...findWorkerFiles(fullPath));
+    } else if (entry.isFile() && /\.(js|mjs)$/.test(entry.name)) {
+      files.push(fullPath);
+    }
+  }
+
+  return files;
+}
+
+function injectPolyfill(): void {
   try {
-    // Find all relevant worker files
-    const workerFiles = await glob('dist/_worker.js/**/*.{js,mjs}', {
-      ignore: ['**/node_modules/**']
-    });
+    const workerDir = path.join(process.cwd(), 'dist', '_worker.js');
+    const workerFiles = findWorkerFiles(workerDir);
 
     console.log('Found worker files:', workerFiles);
 
     for (const file of workerFiles) {
-      const filePath = path.join(process.cwd(), file);
-      const content = fs.readFileSync(filePath, 'utf8');
+      const content = fs.readFileSync(file, 'utf8');
       
       // Only inject if the file doesn't already have the polyfill
       if (!content.includes('MessageChannel Polyfill')) {
         const newContent = polyfill + content;
-        fs.writeFileSync(filePath, newContent);
-        console.log(`✅ Injected polyfill into ${file}`);
+        fs.writeFileSync(file, newContent);
+        console.log(`✅ Injected polyfill into ${path.relative(process.cwd(), file)}`);
       } else {
-        console.log(`⏭️  Skipped ${file} (already has polyfill)`);
+        console.log(`⏭️  Skipped ${path.relative(process.cwd(), file)} (already has polyfill)`);
       }
     }
 
