@@ -49,13 +49,14 @@
   },
   "scripts": {
     "astro": "astro",
-    "build": "astro build",
+    "build": "astro build && npm run inject-polyfill",
     "cf-typegen": "wrangler types",
     "check": "npm run build && npm run wrangler:wrapper && wrangler deploy --dry-run",
     "db:migrate": "wrangler d1 migrations apply DB --local",
     "db:migrate:remote": "wrangler d1 migrations apply DB --remote",
     "deploy": "npm run wrangler:wrapper && wrangler deploy",
     "dev": "npm run build && npm run wrangler:wrapper && npx wrangler dev",
+    "inject-polyfill": "node scripts/inject-messagechannel-polyfill.js",
     "predeploy": "npm run db:migrate:remote",
     "preview": "npm run build && npm run wrangler:wrapper && wrangler dev",
     "wrangler:wrapper": "cp src/workflows/wrapper.js dist/index.js"
