@@ -22,6 +22,24 @@ export const Sidebar = forwardRef<HTMLElement, SidebarProps>(
   }
 )
 
+interface SidebarHeaderProps extends React.HTMLAttributes<HTMLDivElement> {
+  children: React.ReactNode
+}
+
+export const SidebarHeader = forwardRef<HTMLDivElement, SidebarHeaderProps>(
+  ({ children, className, ...props }, ref) => {
+    return (
+      <div
+        ref={ref}
+        className={cn('flex h-14 items-center border-b px-4', className)}
+        {...props}
+      >
+        {children}
+      </div>
+    )
+  }
+)
+
 interface SidebarBodyProps extends React.HTMLAttributes<HTMLDivElement> {
   children: React.ReactNode
 }
@@ -50,6 +68,49 @@ export const SidebarFooter = forwardRef<HTMLDivElement, SidebarFooterProps>(
       <div
         ref={ref}
         className={cn('border-t p-4', className)}
+        {...props}
+      >
+        {children}
+      </div>
+    )
+  }
+)
+
+interface SidebarHeadingProps extends React.HTMLAttributes<HTMLHeadingElement> {
+  children: React.ReactNode
+}
+
+export const SidebarHeading = forwardRef<HTMLHeadingElement, SidebarHeadingProps>(
+  ({ children, className, ...props }, ref) => {
+    return (
+      <h2
+        ref={ref}
+        className={cn('mb-2 px-2 text-lg font-semibold tracking-tight', className)}
+        {...props}
+      >
+        {children}
+      </h2>
+    )
+  }
+)
+
+interface SidebarItemProps extends React.HTMLAttributes<HTMLDivElement> {
+  children: React.ReactNode
+  active?: boolean
+}
+
+export const SidebarItem = forwardRef<HTMLDivElement, SidebarItemProps>(
+  ({ children, className, active, ...props }, ref) => {
+    return (
+      <div
+        ref={ref}
+        className={cn(
+          'flex items-center rounded-md px-3 py-2 text-sm font-medium',
+          active
+            ? 'bg-accent text-accent-foreground'
+            : 'hover:bg-accent hover:text-accent-foreground',
+          className
+        )}
         {...props}
       >
         {children}
