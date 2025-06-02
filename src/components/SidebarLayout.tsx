@@ -6,8 +6,8 @@ import {
   DropdownItem,
   DropdownLabel,
   DropdownMenu,
-} from '../components/dropdown'
-import { Navbar, NavbarItem, NavbarSection, NavbarSpacer } from '../components/navbar'
+} from '../components/catalyst-ui-kit/dropdown'
+import { Navbar, NavbarItem, NavbarSection, NavbarSpacer } from '../components/catalyst-ui-kit/navbar'
 import {
   Sidebar,
   SidebarBody,
@@ -18,7 +18,7 @@ import {
   SidebarLabel,
   SidebarSection,
   SidebarSpacer,
-} from '../components/sidebar'
+} from '../components/catalyst-ui-kit/sidebar'
 import {
   ArrowRightStartOnRectangleIcon,
   ChevronDownIcon,
