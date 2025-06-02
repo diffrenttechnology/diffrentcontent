@@ -58,6 +58,6 @@
     "dev": "npm run build && npm run wrangler:wrapper && npx wrangler dev",
     "predeploy": "npm run db:migrate:remote",
     "preview": "npm run build && npm run wrangler:wrapper && wrangler dev",
-    "wrangler:wrapper": "cp src/workflows/wrapper.js dist/index.js"
+    "wrangler:wrapper": "mkdir -p dist/polyfills && cp src/workflows/wrapper.js dist/index.js && cp src/polyfills/messageChannelPolyfill.ts dist/polyfills/"
   }
 }

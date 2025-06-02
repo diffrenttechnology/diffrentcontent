@@ -1,4 +1,4 @@
-import '../polyfills/messageChannelPolyfill';
+import './polyfills/messageChannelPolyfill';
 
 // This is a wrapper file for exporting both the Astro application as well as
 // the CustomerWorkflow class. This is necessary because Astro does not allow
