@@ -1,7 +1,6 @@
 {
   "name": "diffrentcontent",
   "description": "Admin dashboard template built with Astro, shadcn/ui, and Cloudflare's developer stack",
-  "type": "module",
   "cloudflare": {
     "label": "SaaS Admin Template",
     "products": [
@@ -46,21 +45,17 @@
     "zod": "3.24.3"
   },
   "devDependencies": {
-    "@types/node": "^20.11.30",
-    "tsx": "^4.7.1",
-    "typescript": "^5.4.2",
     "wrangler": "4.16.1"
   },
   "scripts": {
     "astro": "astro",
-    "build": "astro build && npm run inject-polyfill",
+    "build": "astro build",
     "cf-typegen": "wrangler types",
     "check": "npm run build && npm run wrangler:wrapper && wrangler deploy --dry-run",
     "db:migrate": "wrangler d1 migrations apply DB --local",
     "db:migrate:remote": "wrangler d1 migrations apply DB --remote",
     "deploy": "npm run wrangler:wrapper && wrangler deploy",
     "dev": "npm run build && npm run wrangler:wrapper && npx wrangler dev",
-    "inject-polyfill": "tsx scripts/inject-messagechannel-polyfill.ts",
     "predeploy": "npm run db:migrate:remote",
     "preview": "npm run build && npm run wrangler:wrapper && wrangler dev",
     "wrangler:wrapper": "cp src/workflows/wrapper.js dist/index.js"
