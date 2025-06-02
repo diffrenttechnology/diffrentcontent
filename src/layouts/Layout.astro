@@ -1,5 +1,5 @@
 ---
-import '@/styles/globals.css'
+import '../styles/global.css'
 import { Button } from '@/components/ui/button';
 import { Header } from '@/components/Header';
 import ApiTokenMissingCard from '@/components/admin/api-token-missing-card';
@@ -35,10 +35,11 @@ const apiTokenSet = API_TOKEN && API_TOKEN !== '';
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="stylesheet" href="https://rsms.me/inter/inter.css" />
     <meta name="generator" content={Astro.generator} />
     <title>{title ? `${title} - SaaS Admin Template` : 'SaaS Admin Template'}</title>
   </head>
-  <body>
+  <body class="font-sans">
     <Header currentPath={currentPath} />
     <div class="flex-1 space-y-4 p-8 pt-6">
       <div class="mb-4">
