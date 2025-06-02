@@ -92,4 +92,36 @@ export const NavbarItem = forwardRef<HTMLDivElement, NavbarItemProps>(
       </div>
     )
   }
+)
+
+interface NavbarSectionProps extends React.HTMLAttributes<HTMLDivElement> {
+  children: React.ReactNode
+}
+
+export const NavbarSection = forwardRef<HTMLDivElement, NavbarSectionProps>(
+  ({ children, className, ...props }, ref) => {
+    return (
+      <div
+        ref={ref}
+        className={cn('flex items-center gap-4', className)}
+        {...props}
+      >
+        {children}
+      </div>
+    )
+  }
+)
+
+interface NavbarSpacerProps extends React.HTMLAttributes<HTMLDivElement> {}
+
+export const NavbarSpacer = forwardRef<HTMLDivElement, NavbarSpacerProps>(
+  ({ className, ...props }, ref) => {
+    return (
+      <div
+        ref={ref}
+        className={cn('flex-1', className)}
+        {...props}
+      />
+    )
+  }
 ) 
