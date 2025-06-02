@@ -16,7 +16,7 @@ const repoLink = 'https://github.com/cloudflare/templates/tree/main/saas-admin-t
   };
   const isDark = getThemePreference() === 'dark';
   document.documentElement.classList[isDark ? 'add' : 'remove']('dark');
- 
+
   if (typeof localStorage !== 'undefined') {
     const observer = new MutationObserver(() => {
       const isDark = document.documentElement.classList.contains('dark');
@@ -37,18 +37,16 @@ const repoLink = 'https://github.com/cloudflare/templates/tree/main/saas-admin-t
   </head>
   <body>
     <SidebarLayout client:load>
-      <div class="flex flex-col items-center justify-center gap-4 py-20 px-8">
-        <h1 class="text-5xl font-bold">SaaS Admin Template</h1>
-        <p class="text-xl text-muted-foreground">Manage a SaaS application - customers, subscriptions - using Cloudflare Workers and D1.</p>
-        <div class="flex flex gap-4 mt-4">
-          <a class={buttonVariants()} href="/admin">
-            <LayoutDashboard /> Go to admin
-          </a>
-          <a class={buttonVariants({ variant: 'outline' })} href={repoLink}>
-            <Github /> View on GitHub
-          </a>
+      <main class="container py-6">
+        <h1 class="text-4xl font-bold">Welcome to the Dashboard</h1>
+        <p class="mt-4 text-lg text-muted-foreground">
+          This is your new dashboard. You can start customizing it to fit your needs.
+        </p>
+        <div class="mt-8 flex gap-4">
+          <a href="/create-customer" class={buttonVariants()}>Create Customer</a>
+          <a href="/create-subscription" class={buttonVariants({ variant: 'outline' })}>Create Subscription</a>
         </div>
-      </div>
+      </main>
     </SidebarLayout>
   </body>
 </html>
