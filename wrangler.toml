@@ -1,0 +1,14 @@
+compatibility_flags = ["nodejs_compat"]
+compatibility_date = "2024-01-01"
+
+[[d1_databases]]
+binding = "DB"
+database_name = "diffrentcontent"
+database_id = "edf6acc0-e227-4e4a-b954-2bf03a1f08d8"
+
+[[workflows]]
+binding = "CUSTOMER_WORKFLOW"
+name = "CustomerWorkflow"
+
+[vars]
+EXAMPLE_VALUE = "example_value" 

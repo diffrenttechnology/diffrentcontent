@@ -18,8 +18,5 @@ export default defineConfig({
       },
     },
     plugins: [tailwindcss()],
-    ssr: {
-      noExternal: ['@heroicons/react']
-    }
   },
 });
