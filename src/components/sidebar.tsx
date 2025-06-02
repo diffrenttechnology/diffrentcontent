@@ -117,4 +117,54 @@ export const SidebarItem = forwardRef<HTMLDivElement, SidebarItemProps>(
       </div>
     )
   }
+)
+
+interface SidebarLabelProps extends React.HTMLAttributes<HTMLSpanElement> {
+  children: React.ReactNode
+}
+
+export const SidebarLabel = forwardRef<HTMLSpanElement, SidebarLabelProps>(
+  ({ children, className, ...props }, ref) => {
+    return (
+      <span
+        ref={ref}
+        className={cn('ml-2 text-sm font-medium', className)}
+        {...props}
+      >
+        {children}
+      </span>
+    )
+  }
+)
+
+interface SidebarSectionProps extends React.HTMLAttributes<HTMLDivElement> {
+  children: React.ReactNode
+}
+
+export const SidebarSection = forwardRef<HTMLDivElement, SidebarSectionProps>(
+  ({ children, className, ...props }, ref) => {
+    return (
+      <div
+        ref={ref}
+        className={cn('space-y-1', className)}
+        {...props}
+      >
+        {children}
+      </div>
+    )
+  }
+)
+
+interface SidebarSpacerProps extends React.HTMLAttributes<HTMLDivElement> {}
+
+export const SidebarSpacer = forwardRef<HTMLDivElement, SidebarSpacerProps>(
+  ({ className, ...props }, ref) => {
+    return (
+      <div
+        ref={ref}
+        className={cn('h-4', className)}
+        {...props}
+      />
+    )
+  }
 ) 
