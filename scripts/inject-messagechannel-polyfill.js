@@ -1,5 +1,6 @@
 import fs from 'fs';
 import path from 'path';
+import { glob } from 'glob';
 
 const polyfill = `// MessageChannel Polyfill for Cloudflare Workers
 if (typeof globalThis.MessageChannel === 'undefined') {
@@ -28,20 +29,34 @@ if (typeof globalThis.MessageChannel === 'undefined') {
 
 `;
 
-const workerPath = path.join(process.cwd(), 'dist', '_worker.js', 'index.js');
+async function injectPolyfill() {
+  try {
+    // Find all relevant worker files
+    const workerFiles = await glob('dist/_worker.js/**/*.{js,mjs}', {
+      ignore: ['**/node_modules/**']
+    });
 
-try {
-  // Read the worker file
-  const content = fs.readFileSync(workerPath, 'utf8');
-  
-  // Inject the polyfill at the beginning
-  const newContent = polyfill + content;
-  
-  // Write back to the file
-  fs.writeFileSync(workerPath, newContent);
-  
-  console.log('✅ Successfully injected MessageChannel polyfill');
-} catch (error) {
-  console.error('❌ Failed to inject MessageChannel polyfill:', error);
-  process.exit(1);
-} 
+    console.log('Found worker files:', workerFiles);
+
+    for (const file of workerFiles) {
+      const filePath = path.join(process.cwd(), file);
+      const content = fs.readFileSync(filePath, 'utf8');
+      
+      // Only inject if the file doesn't already have the polyfill
+      if (!content.includes('MessageChannel Polyfill')) {
+        const newContent = polyfill + content;
+        fs.writeFileSync(filePath, newContent);
+        console.log(`✅ Injected polyfill into ${file}`);
+      } else {
+        console.log(`⏭️  Skipped ${file} (already has polyfill)`);
+      }
+    }
+
+    console.log('✅ Successfully processed all worker files');
+  } catch (error) {
+    console.error('❌ Failed to inject MessageChannel polyfill:', error);
+    process.exit(1);
+  }
+}
+
+injectPolyfill(); 

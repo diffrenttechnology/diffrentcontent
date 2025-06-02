@@ -1,6 +1,7 @@
 {
   "name": "diffrentcontent",
   "description": "Admin dashboard template built with Astro, shadcn/ui, and Cloudflare's developer stack",
+  "type": "module",
   "cloudflare": {
     "label": "SaaS Admin Template",
     "products": [
@@ -45,6 +46,7 @@
     "zod": "3.24.3"
   },
   "devDependencies": {
+    "glob": "^10.3.10",
     "wrangler": "4.16.1"
   },
   "scripts": {
